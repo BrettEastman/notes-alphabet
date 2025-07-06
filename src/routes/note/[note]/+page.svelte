@@ -1,17 +1,16 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import { onMount } from 'svelte';
-  import NotationRenderer from './NotationRenderer.svelte';
-  import { playNote, initAudio } from './audio';
-  import { noteData } from './notes';
-  import type { NoteKey } from './types';
+  import NotationRenderer from '$lib/NotationRenderer.svelte';
+  import { playNote, initAudio } from '$lib/audio';
+  import { noteData } from '$lib/notes';
+  import type { NoteKey } from '$lib/types';
 
-  export let noteName: NoteKey;
+  // Get the note from the URL parameter
+  const noteName = $page.params.note as NoteKey;
   
   let audioInitialized = false;
   let currentNote = noteData[noteName];
-  
-  // Update currentNote when noteName changes
-  $: currentNote = noteData[noteName];
   
   onMount(async () => {
     try {

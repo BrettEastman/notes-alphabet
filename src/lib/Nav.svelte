@@ -1,18 +1,17 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import { noteKeys } from './notes';
   
-  export let activeNote: string | null = null;
-  
   let dropdownOpen = false;
-  
+
   const toggleDropdown = () => {
     dropdownOpen = !dropdownOpen;
   };
-  
+
   const closeDropdown = () => {
     dropdownOpen = false;
   };
-  
+
   // Close dropdown when clicking outside
   const handleClickOutside = (event: MouseEvent) => {
     const target = event.target as HTMLElement;
@@ -33,7 +32,7 @@
     <div class="dropdown" class:open={dropdownOpen}>
       <button 
         class="dropdown-toggle" 
-        class:active={activeNote !== null}
+        class:active={$page.url.pathname.startsWith('/note/')}
         on:click={toggleDropdown}
         aria-expanded={dropdownOpen}
         aria-haspopup="true"
@@ -50,7 +49,7 @@
             <a 
               href="/note/{note}" 
               class="dropdown-item" 
-              class:active={activeNote === note}
+              class:active={$page.params.note === note}
               on:click={closeDropdown}
             >
               Note {note}
