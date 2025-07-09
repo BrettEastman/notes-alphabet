@@ -41,7 +41,7 @@
     <div class="note-info">
       <p>Frequency: {currentNote.frequency} Hz</p>
       <p>Octave: {currentNote.octave}</p>
-      <button class="play-button" on:click={handlePlay}>
+      <button class="play-button" onclick={handlePlay}>
         Play Note {currentNote.name}
       </button>
     </div>

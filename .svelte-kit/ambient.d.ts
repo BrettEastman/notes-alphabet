@@ -70,6 +70,10 @@ declare module '$env/static/private' {
 	export const __CFBundleIdentifier: string;
 	export const __CF_USER_TEXT_ENCODING: string;
 	export const DEBUG: string;
+	export const VSCODE_L10N_BUNDLE_LOCATION: string;
+	export const APPLICATION_INSIGHTS_NO_STATSBEAT: string;
+	export const APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: string;
+	export const APPLICATIONINSIGHTS_CONFIGURATION_CONTENT: string;
 	export const ELECTRON_NO_ASAR: string;
 	export const NODE_ENV: string;
 }
@@ -147,6 +151,10 @@ declare module '$env/dynamic/private' {
 		__CFBundleIdentifier: string;
 		__CF_USER_TEXT_ENCODING: string;
 		DEBUG: string;
+		VSCODE_L10N_BUNDLE_LOCATION: string;
+		APPLICATION_INSIGHTS_NO_STATSBEAT: string;
+		APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: string;
+		APPLICATIONINSIGHTS_CONFIGURATION_CONTENT: string;
 		ELECTRON_NO_ASAR: string;
 		NODE_ENV: string;
 		[key: `PUBLIC_${string}`]: undefined;

@@ -1,16 +1,27 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import { onMount, onDestroy } from 'svelte';
   import { Renderer, Stave, StaveNote, Voice, Formatter } from 'vexflow';
   import type { NoteKey } from './types';
   
-  export let activeNote: NoteKey | null = null;
-  export let width = 400;
-  export let height = 150;
-  export let showAllNotes = false;
+  interface Props {
+    activeNote?: NoteKey | null;
+    width?: number;
+    height?: number;
+    showAllNotes?: boolean;
+  }
+
+  let {
+    activeNote = null,
+    width = 400,
+    height = 150,
+    showAllNotes = false
+  }: Props = $props();
   
-  let container: HTMLDivElement;
+  let container: HTMLDivElement = $state();
   let renderer: any;
-  let context: any;
+  let context: any = $state();
   
   const renderNotation = () => {
     if (!container) return;
@@ -72,14 +83,16 @@
   };
   
   // Redraw when activeNote or showAllNotes changes
-  $: {
+  run(() => {
     if (container && context) {
       renderNotation();
     }
-  }
+  });
   
   // Also watch activeNote explicitly
-  $: activeNote, renderNotation();
+  run(() => {
+    activeNote, renderNotation();
+  });
   
   onMount(() => {
     renderNotation();

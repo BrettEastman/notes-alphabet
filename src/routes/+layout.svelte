@@ -1,12 +1,17 @@
 <script lang="ts">
   import Nav from '$lib/Nav.svelte';
   import '../app.css';
+  interface Props {
+    children?: import('svelte').Snippet;
+  }
+
+  let { children }: Props = $props();
 </script>
 
 <Nav />
 
 <main>
-  <slot />
+  {@render children?.()}
 </main>
 
 <footer>

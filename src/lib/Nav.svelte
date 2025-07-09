@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { page } from '$app/stores';
+  import { page } from '$app/state';
   import { noteKeys } from './notes';
   
-  let dropdownOpen = false;
+  let dropdownOpen = $state(false);
 
   const toggleDropdown = () => {
     dropdownOpen = !dropdownOpen;
@@ -21,19 +21,19 @@
   };
 </script>
 
-<svelte:window on:click={handleClickOutside} />
+<svelte:window onclick={handleClickOutside} />
 
 <nav>
   <div class="nav-container">
-    <a href="/" class="nav-title" on:click={closeDropdown}>
+    <a href="/" class="nav-title" onclick={closeDropdown}>
       Text To Note
     </a>
     
     <div class="dropdown" class:open={dropdownOpen}>
       <button 
         class="dropdown-toggle" 
-        class:active={$page.url.pathname.startsWith('/note/')}
-        on:click={toggleDropdown}
+        class:active={page.url.pathname.startsWith('/note/')}
+        onclick={toggleDropdown}
         aria-expanded={dropdownOpen}
         aria-haspopup="true"
       >
@@ -49,8 +49,8 @@
             <a 
               href="/note/{note}" 
               class="dropdown-item" 
-              class:active={$page.params.note === note}
-              on:click={closeDropdown}
+              class:active={page.params.note === note}
+              onclick={closeDropdown}
             >
               Note {note}
             </a>
